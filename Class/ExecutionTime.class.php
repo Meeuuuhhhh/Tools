@@ -18,18 +18,16 @@ class ExecutionTime{
     }
     
     function __destruct(){
-        if(ENVIRONNEMENT != 'PROD'){
-            $this->iOverallEnd = microtime(true);
-            if(isset($this->aTabTimers) && !empty($this->aTabTimers)){
-                foreach($this->aTabTimers as $nomCheckPoint=>$timer){
-                    if(!isset($timer[$valueLastCheckPoint])){
-                        $this->aTabTimers[$nomCheckPoint][$valueLastCheckPoint] = microtime(true);
-                    }
-                    echo 'Duree globale : '.number_format($totalExecutionTime,3).'s';
+        $this->iOverallEnd = microtime(true);
+        if(isset($this->aTabTimers) && !empty($this->aTabTimers)){
+            foreach($this->aTabTimers as $nomCheckPoint=>$timer){
+                if(!isset($timer[$valueLastCheckPoint])){
+                    $this->aTabTimers[$nomCheckPoint][$valueLastCheckPoint] = microtime(true);
                 }
+                echo 'Duree globale : '.number_format($totalExecutionTime,3).'s';
             }
-            $this->afficheTimers();
         }
+        $this->afficheTimers();
         
     }
     
