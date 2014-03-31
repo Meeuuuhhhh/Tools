@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
 
 --
--- Structure de la table `contact_provider`
+-- Structure de la table `membre_provider`
 --
 
 CREATE TABLE IF NOT EXISTS `membre_provider` (
