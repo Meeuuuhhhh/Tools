@@ -21,10 +21,9 @@ class ExecutionTime{
         $this->iOverallEnd = microtime(true);
         if(isset($this->aTabTimers) && !empty($this->aTabTimers)){
             foreach($this->aTabTimers as $nomCheckPoint=>$timer){
-                if(!isset($timer[$valueLastCheckPoint])){
-                    $this->aTabTimers[$nomCheckPoint][$valueLastCheckPoint] = microtime(true);
+                if(!isset($timer[$this->valueLastCheckPoint])){
+                    $this->aTabTimers[$nomCheckPoint][$this->valueLastCheckPoint] = microtime(true);
                 }
-                echo 'Duree globale : '.number_format($totalExecutionTime,3).'s';
             }
         }
         $this->afficheTimers();
@@ -41,9 +40,9 @@ class ExecutionTime{
             $timer0EnCours = $this->iOverallStart;
             foreach($this->aTabTimers as $nomCheckPoint=>$timer){
                 $timerStartCheckpoint = $timer[0];
-                $timerEndCheckpoint = $timer[$valueLastCheckPoint];
+                $timerEndCheckpoint = $timer[$this->valueLastCheckPoint];
                 unset($timer[0]);
-                unset($timer[$valueLastCheckPoint]);
+                unset($timer[$this->valueLastCheckPoint]);
 
                 $ligneRecapitulative .= ' -> '.$nomCheckPoint.'['.number_format($timerStartCheckpoint-$timer0EnCours,3).']';
                 $timer0EnCours = $timerStartCheckpoint;
